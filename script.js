@@ -403,7 +403,8 @@ Smc.phaserEventHandlers.create.push(function() {
     Smc.game.physics.startSystem(Phaser.Physics.ARCADE);
     Smc.game.physics.startSystem(Phaser.Physics.BOX2D);
     Smc.game.stage.backgroundColor = '#333';
-    Smc.game.add.tileSprite(-400,-400, 2000, 1600, 'background');
+    Smc.game.add.tileSprite(0,0,1900,1267,'background');
+    Smc.game.world.setBounds(0,0,1900,480);
 });
 
 /**
@@ -507,8 +508,12 @@ Smc.phaserEventHandlers.create.push(function() {
     Smc.enemyTeam.add(Smc.mexican.getPhaserObject());
     Smc.enemyTeam.enableBody = true;
     Smc.game.physics.arcade.enable(Smc.enemyTeam);
+
+    Smc.game.camera.follow(Smc.student.getPhaserObject());  
 });
 
 Smc.phaserEventHandlers.render.push(function() {
     Smc.game.debug.box2dWorld();
+    Smc.game.debug.cameraInfo(Smc.game.camera, 32, 32);
+    Smc.game.debug.spriteCoords(Smc.student.getPhaserObject(), 32, 500);
 });
